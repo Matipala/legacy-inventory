@@ -1,0 +1,36 @@
+name: Integración Continua (CI)
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar pruebas automatizadas
+        run: npm run test
+
+      - name: Empaquetar resultado (Artefacto)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy-inventory-app
+          path: .
+          retention-days: 1
