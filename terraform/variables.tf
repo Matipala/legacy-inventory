@@ -7,7 +7,7 @@ variable "app_port" {
 variable "iam_profile" {
   description = "Perfil IAM del Learner Lab"
   type        = string
-  default     = "LabRole"
+  default     = "voclabs" 
 }
 
 variable "instance_type" {
