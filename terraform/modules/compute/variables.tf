@@ -1,0 +1,4 @@
+variable "ami_id" { type = string }
+variable "instance_type" { type = string }
+variable "sg_id" { type = string }
+variable "iam_profile" { type = string }
